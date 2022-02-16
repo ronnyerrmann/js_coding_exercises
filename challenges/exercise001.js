@@ -75,7 +75,7 @@ function countLinuxUsers(users) {
   if (users === undefined) throw new Error("users is required");
   let counter = 0;
   for (let user of users) {
-     if (user.type == "Linux") {
+     if (user.type === "Linux") {
        counter ++;
      }
   }
@@ -90,8 +90,8 @@ function getMeanScore(scores) {
 
 function simpleFizzBuzz(n) {
   if (n === undefined) throw new Error("n is required");
-  let divBy3 = (n % 3 == 0);
-  let divBy5 = (n % 5 == 0);
+  let divBy3 = (n % 3 === 0);
+  let divBy5 = (n % 5 === 0);
   if (divBy3 && divBy5) { return "fizzbuzz"; }
   else if (divBy3) { return "fizz"; }
   else if (divBy5) { return "buzz"; }

@@ -16,7 +16,7 @@ function findNamesBeginningWith(names, char) {
   if (!names) throw new Error("names is required");
   if (!char) throw new Error("char is required");
   const resultNames = names.filter(function(name) {
-    return (name.slice(0,1) == char);
+    return (name.slice(0,1) === char);
   });
   return resultNames;
 }
@@ -24,7 +24,7 @@ function findNamesBeginningWith(names, char) {
 function findVerbs(words) {
   if (!words) throw new Error("words is required");
   const verbs = words.filter(function(word) {
-    return (word.slice(0,3) == "to ");
+    return (word.slice(0,3) === "to ");
   });
   return verbs;
 }

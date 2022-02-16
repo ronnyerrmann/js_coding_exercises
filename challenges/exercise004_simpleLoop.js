@@ -20,7 +20,7 @@ function findNamesBeginningWith(names, char) {
   if (!char) throw new Error("char is required");
   let resultNames = [];
   for (let name of names) {
-    if (name.slice(0,1) == char) {
+    if (name.slice(0,1) === char) {
       resultNames.push(name);
     }
   }
@@ -31,7 +31,7 @@ function findVerbs(words) {
   if (!words) throw new Error("words is required");
   let verbs = [];
   for (let word of words) {
-    if (word.slice(0,3) == "to ") {
+    if (word.slice(0,3) === "to ") {
       verbs.push(word);
     }
   }

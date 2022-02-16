@@ -19,7 +19,7 @@ function countSheep(arr) {
   if (arr === undefined) throw new Error("arr is required");
   let numberOfSheep = 0;
   for (let entry of arr) {
-    if (entry.toLowerCase() == "sheep") {
+    if (entry.toLowerCase() === "sheep") {
       numberOfSheep ++;
     }
   }
@@ -29,7 +29,7 @@ function countSheep(arr) {
 function hasMPostCode(person) {
   if (person === undefined) throw new Error("person is required");
   // Check that the key is available
-  return (person.address.city.toLowerCase() == "manchester") && (person.address.postCode.slice(0, 1).toLowerCase() == "m");
+  return (person.address.city.toLowerCase() === "manchester") && (person.address.postCode.slice(0, 1).toLowerCase() === "m");
 }
 
 module.exports = {

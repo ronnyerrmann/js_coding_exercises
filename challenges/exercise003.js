@@ -14,7 +14,7 @@ function getSquares(nums) {
 
 function camelCaseWords(words) {
   if (words === undefined) throw new Error("words is required");
-  if (words.length == 0) {
+  if (words.length === 0) {
     return "";
   }
   let camelWord = words[0];
@@ -44,7 +44,7 @@ function checkIngredients(menu, ingredient) {
   let isInMenu = false;
   menu.forEach(meal => {
     for (let entry of meal.ingredients) {
-      if (entry == ingredient) {
+      if (entry === ingredient) {
         isInMenu = true;
         break;
       }
@@ -85,7 +85,7 @@ function duplicateNumbers_v2(arr1, arr2) {
   let dublicateArr = [];
   uniqueArr1.forEach(entry1 => {
     uniqueArr2.forEach(entry2 => {
-      if (entry1 == entry2) {
+      if (entry1 === entry2) {
         dublicateArr.push(entry1);
       }
     });
