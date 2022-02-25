@@ -6,6 +6,11 @@
  */
 const sumMultiples = arr => {
   if (arr === undefined) throw new Error("arr is required");
+  let num = 0;
+  arr.forEach(entry => {
+    if (entry%3===0 || entry%5===0) { num += entry; }
+  });
+  return num;
 };
 
 /**
@@ -15,6 +20,11 @@ const sumMultiples = arr => {
  */
 const isValidDNA = str => {
   if (str === undefined) throw new Error("str is required");
+  let valid = true;
+  str.split('').forEach(entry => {
+    if (entry != "C" && entry != "G" && entry != "T" && entry != "A") { valid = false; }
+  });
+  return valid;
 };
 
 /**
@@ -24,6 +34,17 @@ const isValidDNA = str => {
  */
 const getComplementaryDNA = str => {
   if (str === undefined) throw new Error("str is required");
+  if (!isValidDNA(str)) throw new Error("valid DNA is required");
+  const getComplementaryDNAArr = str.split('').map(val => {
+    switch (val) {
+      case "C": return "G";
+      case "G": return "C";
+      case "A": return "T";
+      case "T": return "A";
+      default: throw new Error("valid DNA is required");    // caught alreayd above
+    }
+  });
+  return getComplementaryDNAArr.join("");
 };
 
 /**
@@ -33,6 +54,18 @@ const getComplementaryDNA = str => {
  */
 const isItPrime = n => {
   if (n === undefined) throw new Error("n is required");
+  if (n < 1) throw new Error("a positive integer is expected");
+  if (n === 1) { return false;}
+  if (n === 2) { return true;}
+  if (n%2 === 0) { return false;}
+  let isPrime = true;
+  for (let testNumber=3; testNumber <= Math.sqrt(n); testNumber += 2){  // still checks for multiple of 5, which could be just caught once
+    if (n%testNumber === 0) {
+      isPrime = false;
+      break;
+    }
+  }
+  return isPrime;
 };
 
 /**
@@ -49,6 +82,9 @@ const isItPrime = n => {
 const createMatrix = (n, fill) => {
   if (n === undefined) throw new Error("n is required");
   if (fill === undefined) throw new Error("fill is required");
+  const array = Array(n).fill(fill);
+  const matrix = Array(n).fill(array);
+  return matrix;
 };
 
 /**
@@ -66,6 +102,13 @@ const createMatrix = (n, fill) => {
 const areWeCovered = (staff, day) => {
   if (staff === undefined) throw new Error("staff is required");
   if (day === undefined) throw new Error("day is required");
+  let numberStaff = 0;
+  staff.forEach(entry => {
+    entry.rota.forEach(rotaDay => {
+      if (rotaDay === day) { numberStaff ++; }
+    });
+  });
+  return (numberStaff >= 3);
 };
 
 module.exports = {
