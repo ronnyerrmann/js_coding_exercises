@@ -4,6 +4,14 @@
  */
 const sumDigits = n => {
   if (n === undefined) throw new Error("n is required");
+  const nStr = n.toString();
+  let sum = 0;
+  const iiMax = nStr.length;
+  for (let ii=0; ii<iiMax; ii++) {
+    sum += parseInt(nStr[iiMax-1-ii]);
+  }
+  return sum;
+  // using maths instead of conversion to String could be better
 };
 
 /**
