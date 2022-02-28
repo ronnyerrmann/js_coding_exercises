@@ -6,6 +6,7 @@
  */
 const sumMultiples = arr => {
   if (arr === undefined) throw new Error("arr is required");
+  if (!Array.isArray(arr)) throw new Error("arr is required");
   let num = 0;
   arr.forEach(entry => {
     if (entry%3===0 || entry%5===0) { num += entry; }

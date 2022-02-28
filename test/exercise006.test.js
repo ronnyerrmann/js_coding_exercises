@@ -8,6 +8,16 @@ const {
 } = require("../challenges/exercise006");
 
 describe("sumMultiples", () => {
+  test("check that it throws an error if nothing is given", () => {
+    expect(() => {
+      sumMultiples();
+      }).toThrow("arr is required");
+  });
+  test("check that it throws an error if no array is given", () => {
+    expect(() => {
+      sumMultiples("notAnArray");
+      }).toThrow("arr is required");
+  });
   test("returns the sum of any numbers in an array which are a multiple of 3 or 5", () => {
     expect(sumMultiples([5, 3, 7, 8, 1, 10])).toBe(18);
     expect(sumMultiples([7, 8, 1])).toBe(0);

@@ -14,10 +14,19 @@ describe("sumDigits", () => {
 });
 
 
-describe("createMatrix", () => {
-  test("returns a Matrix with n by n elements, filled with 'fill' ", () => {
-    expect(createMatrix(2,1)).toEqual([[1,1], [1,1]]);
-    expect(createMatrix(1,"fill")).toEqual([["fill"]]);
+describe("createRange", () => {
+  test("returns a range from start to step with step between the values", () => {
+    expect(createRange(1,5)).toEqual([1,2,3,4,5]);
+    expect(createRange(2,8,2)).toEqual([2,4,6,8]);
+  });
+  test("check that it works with floats", () => {
+    expect(createRange(1.3,5.5)).toEqual([1.3,2.3,3.3,4.3,5.3]);
+    expect(createRange(2,10,2.5)).toEqual([2,4.5,7.0,9.5]);
+  });
+  test("check that it throws an error", () => {
+    expect(() => {
+      createRange();
+      }).toThrow("start is required");
   });
 });
 
