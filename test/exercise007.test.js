@@ -30,6 +30,56 @@ describe("createRange", () => {
   });
 });
 
+describe("getScreentimeAlertList", () => {
+  test("returns the usernames that have used more than 100 minutes screen time", () => {
+    const users = [
+      {
+      username: "beth_1234",
+      name: "Beth Smith",
+      screenTime: [
+                  { date: "2019-05-01", usage: { twitter: 34, instagram: 22, facebook: 40} },
+                  { date: "2019-05-02", usage: { twitter: 56, instagram: 40, facebook: 31} },
+                  { date: "2019-05-03", usage: { twitter: 12, instagram: 15, facebook: 19} },
+                  { date: "2019-05-04", usage: { twitter: 10, instagram: 56, facebook: 61} },
+                 ]
+      },
+      {
+      username: "sam_j_1989",
+      name: "Sam Jones",
+      screenTime: [
+                  { date: "2019-05-01", usage: { twitter: 34, instagram: 22, facebook: 40} },
+                  { date: "2019-05-02", usage: { twitter: 56, instagram: 40, facebook: 31} },
+                  { date: "2019-06-11", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 10} },
+                  { date: "2019-06-13", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 16} },
+                  { date: "2019-06-14", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 31} },
+                  { date: "2019-06-14", usage: { twitter: 28, instagram: 25, facebook: 19} },
+                 ]
+      },
+      {
+      username: "no_data",
+      name: "No Data",
+      },
+      {
+      name: "No Username",
+      screenTime: [
+                  { date: "2019-05-01", usage: { twitter: 34, instagram: 22, facebook: 40} },
+                  { date: "2019-05-02", usage: { twitter: 56, instagram: 40, facebook: 31} },
+                  { date: "2019-06-11", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 10} },
+                  { date: "2019-06-13", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 16} },
+                  { date: "2019-06-14", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 31} },
+                 ]
+      },
+    ];
+
+    expect(getScreentimeAlertList(users,"2018-01-01")).toEqual([]);
+    expect(getScreentimeAlertList(users,"2019-05-01")).toEqual([]);
+    expect(getScreentimeAlertList(users,"2019-05-02")).toEqual(["beth_1234", "sam_j_1989"]);
+    expect(getScreentimeAlertList(users,"2019-05-04")).toEqual(["beth_1234"]);
+    expect(getScreentimeAlertList(users,"2019-06-11")).toEqual([]);
+    expect(getScreentimeAlertList(users,"2019-06-14")).toEqual(["sam_j_1989"]);
+  });
+});
+
 
 
 
