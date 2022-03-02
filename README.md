@@ -1,3 +1,9 @@
+# Ronny's notes
+
+This was an exercise suggested to me to improve my JavaScript coding after starting working on my [Cycle Logging Project](https://github.com/ronnyerrmann/cycle_logging). It also helped me to gain more experience in a test driven development. All the code, inside the functions in the [challenges folder](challenges/) are written by me, as well as the test functions starting from excercise 6 in the [test folder](test/).
+
+original notes:
+
 # JavaScript Practice
 
 This repository contains 7 lots of exercises for you to undertake and build on your coding and technical ability. We will be checking over your solutions, so please ensure you push to GitHub regularly. 
