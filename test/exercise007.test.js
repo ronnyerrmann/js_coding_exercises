@@ -80,6 +80,76 @@ describe("getScreentimeAlertList", () => {
   });
 });
 
+describe("hexToRGB", () => {
+  test("check that it throws an error", () => {
+    expect(() => {
+      hexToRGB();
+      }).toThrow("hexStr is required");
+  });
+  test("check that it throws an error", () => {
+    expect(() => {
+      hexToRGB("000000");
+      }).toThrow("hexStr is required, starting with #");
+  });
+  test("check that it throws an error", () => {
+    expect(() => {
+      hexToRGB("%000000");
+      }).toThrow("hexStr is required, starting with #");
+  });
+  test("check that it throws an error", () => {
+    expect(() => {
+      hexToRGB("#00000G");
+      }).toThrow("hexStr is required");
+  });
+  test("returns the rgb value of a HEX colour", () => {
+    expect(hexToRGB("#000000")).toBe("rgb(0,0,0)");
+    expect(hexToRGB("#FFFFFF")).toBe("rgb(255,255,255)");
+  });
+  
+});
 
+describe("findWinner", () => {
+  test("check that it throws an error", () => {
+    expect(() => {
+      findWinner();
+      }).toThrow("board is required");
+  });
+  test('return "X" if player X has won, "0" if the player 0 has won, and null if there is currently no winner', () => {
+    let board = [
+        ["X", "0", null],
+        ["X", null, "0"],
+        ["X", null, "0"]
+    ];
+    expect(findWinner(board)).toBe("X");
+    board = [
+        ["X", "0", null],
+        ["0", "0", "0"],
+        ["X", null, "0"]
+    ];
+    expect(findWinner(board)).toBe("0");
+    board = [
+        ["X", "0", null],
+        ["0", "X", "0"],
+        ["X", null, "0"]
+    ];
+    expect(findWinner(board)).toBe(null);
+    board = [
+        ["X", "X", "X"],
+        ["X", null, "0"],
+        ["X", null, "0"]
+    ];
+    expect(findWinner(board)).toBe("X");
+  });
+  test("check that it throws an error if both players won", () => {
+    const board = [
+        ["X", "0", "0"],
+        ["X", "X", "0"],
+        ["X", null, "0"]
+    ];
+    expect(() => {
+      findWinner(board);
+      }).toThrow("both players won");
+  });
+});
 
 

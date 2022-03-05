@@ -97,6 +97,18 @@ const getScreentimeAlertList = (users, date) => {
  */
 const hexToRGB = hexStr => {
   if (hexStr === undefined) throw new Error("hexStr is required");
+  if (hexStr.length != 7) throw new Error("hexStr is required, starting with #");
+  if (hexStr[0] != "#") throw new Error("hexStr is required, starting with #");
+  // https://stackoverflow.com/questions/8027423/how-to-check-if-a-string-is-a-valid-hex-color-representation
+  const reg=/^#[0-9A-F]{6}$/i;
+  if (!reg.test(hexStr)) throw new Error("hexStr is required");
+  let rgbStr = "rgb(";
+  for (let ii=1; ii<=5; ii+=2){
+    const hexVal = hexStr.substr(ii,2);
+    const intVal = parseInt(hexVal, 16);
+    rgbStr += intVal+",";
+  }
+  return rgbStr.slice(0,-1) + ")"
 };
 
 /**
@@ -111,6 +123,37 @@ const hexToRGB = hexStr => {
  */
 const findWinner = board => {
   if (board === undefined) throw new Error("board is required");
+  let positions = [[],[]];
+  let position = 0;
+  board.forEach(line => {
+    line.forEach(entry => {
+      if (entry === "X") { positions[0].push(position); }
+      else if (entry === "0") { positions[1].push(position); }
+      position++;
+    });
+  }); // could also filter by indexOf for each line, and then add 3*number of line
+  const winPositions = [
+    [0,1,2],
+    [3,4,5],
+    [6,7,8],
+    [0,3,6],
+    [1,4,7],
+    [2,5,8],
+    [0,4,8],
+    [2,4,6]
+  ];  // more inteligent: start and step could be given
+  let win = [false, false];
+  winPositions.forEach(winPosition => {
+    for (let player=0; player<=1; player++) {
+      // checks that each entry in winPosition is in positions[player], every() is like np.arr.all()
+      const found = winPosition.every(r=> positions[player].indexOf(r) >= 0);
+      win[player] = win[player] || found;
+    } 
+  });
+  if (win.every(entry => entry)) throw new Error("both players won");
+  if (win[0]) return "X";
+  if (win[1]) return "0";
+  return null;
 };
 
 module.exports = {
